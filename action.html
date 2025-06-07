@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kishan Dost - Farmer Action Page</title>
+  <link rel="stylesheet" href="2.css">
+  <style>
+    .section {
+      background: #fff;
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 800px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #14addc;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 400px;
+    }
+    .product-card {
+      background: #f3f3f3;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .product-card img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 8px;
+    }
+    .weather-box {
+      background: #e0f7fa;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌿 Kishan Dost - Farmer Dashboard</h1>
+
+  <!-- Static Weather Box -->
+  <div class="section weather-box">
+    🌤️ Weather Today: Sunny, 31°C<br/>
+    📍 Location: Kunkupadu Village, India<br/>
+    🌬️ Winds: 12 km/h SE | 💧 Humidity: 40%
+  </div>
+
+  <!-- Product Entry Section -->
+  <div class="section">
+    <h2>🌾 Add a Product to Sell</h2>
+    <form id="productForm">
+      <input type="text" id="productName" placeholder="Product Name" required><br>
+      <input type="number" id="productPrice" placeholder="Price (₹)" required><br>
+      <input type="number" id="productQty" placeholder="Quantity" required><br>
+      <input type="text" id="productImage" placeholder="Image URL (or leave empty)" ><br>
+      <button type="submit">➕ Add Product</button>
+    </form>
+  </div>
+
+  <!-- Product Display Section -->
+  <div class="section">
+    <h2>🛒 Your Product Listings</h2>
+    <div id="productList"></div>
+  </div>
+
+  <script>
+    document.getElementById('productForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('productName').value;
+      const price = document.getElementById('productPrice').value;
+      const qty = document.getElementById('productQty').value;
+      const img = document.getElementById('productImage').value || 'https://via.placeholder.com/250';
+
+      const html = `
+        <div class="product-card">
+          <img src="${img}" alt="${name}">
+          <h3>${name}</h3>
+          <p><strong>Price:</strong> ₹${price}</p>
+          <p><strong>Quantity:</strong> ${qty}</p>
+          <button onclick="alert('Order Placed for ${name}!')">Order Now</button>
+        </div>
+      `;
+
+      document.getElementById('productList').insertAdjacentHTML('beforeend', html);
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
